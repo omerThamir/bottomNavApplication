@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/day_background"
     android:orientation="vertical"
-    tools:context=".ui.list.ListFragment"
-    android:paddingBottom="?attr/actionBarSize">
+    android:paddingBottom="?attr/actionBarSize"
+    tools:context=".ui.list.ListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

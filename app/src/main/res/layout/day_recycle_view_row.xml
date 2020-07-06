@@ -5,14 +5,14 @@
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
-    android:background="@drawable/rounded_bg"
+    android:background="@drawable/day_rounded_bg"
     android:minHeight="100dp"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/favImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:padding="6dp"
@@ -41,7 +41,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="01"
-        android:textColor="#292828"
+        android:textColor="#393838"
         android:textSize="20sp" />
 
 

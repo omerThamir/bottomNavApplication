@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.omar.myapps.bottomnavapplication.DataBaseHelper;
 import com.omar.myapps.bottomnavapplication.MyRecyclerViewAdapter;
 import com.omar.myapps.bottomnavapplication.R;
 import com.omar.myapps.bottomnavapplication.Utils;
@@ -45,7 +47,11 @@ public class ListFragment extends Fragment {
 
         root = inflater.inflate(R.layout.fragment_list, container, false);
 
-        //utils = new Utils(getContext());
+        //if not open any list, initialy open allah names list;
+        if (Utils.Openedlist == null) {
+            Utils.Openedlist = "ALLAH_NAMES_TABLE";
+            new Utils(getContext()).getDateFrom(getContext(), DataBaseHelper.ALLAH_NAMES_TABLE);
+        }
         prayList = Utils.getArrayList();
         favOrNotList = Utils.getFAVorNotList();
 
@@ -56,6 +62,14 @@ public class ListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new MyRecyclerViewAdapter(getContext(), prayList, favOrNotList, this);
         recyclerView.setAdapter(adapter);
+
+        LinearLayout listFragmentLayout = root.findViewById(R.id.listFragmentLayout);
+        if (Utils.Day_Night_Mode.equals("day")) {
+            listFragmentLayout.setBackgroundColor(getResources().getColor(R.color.day_background));
+        } else {
+            listFragmentLayout.setBackgroundColor(getResources().getColor(R.color.night_background));
+        }
+
         return root;
     }
 

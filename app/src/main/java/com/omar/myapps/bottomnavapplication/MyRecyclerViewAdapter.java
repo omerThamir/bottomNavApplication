@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.fragment.app.Fragment;
@@ -38,7 +37,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recycle_view_row, parent, false);
+        View view;
+        if (Utils.Day_Night_Mode.equals("day")) {
+            view = mInflater.inflate(R.layout.day_recycle_view_row, parent, false);
+        } else {
+            view = mInflater.inflate(R.layout.night_recycle_view_row, parent, false);
+        }
 
         return new ViewHolder(view);
     }
@@ -66,7 +70,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
 
 
-        holder.prayerindex.setText(position + 1 + "");
+        holder.prayerindex.setText(Utils.replaceToArabicNumbers(String.valueOf(position + 1)));
 
     }
 
@@ -92,7 +96,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 public void onClick(View v) {
 
                     // when click the item row: take prayer name for the text view to be used lator
-                    //    Toast.makeText(v.getContext(), myTextView.getText().toString() , Toast.LENGTH_SHORT).show();
                     ((ListFragment) fragment).passData(myTextView.getText().toString());
 
                     if (context instanceof MainActivity) {
@@ -117,7 +120,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
                         favImageView.setTag("ic_favorite_on");
                         favImageView.setImageResource(R.drawable.ic_favorite_on);
-                        Toast.makeText(v.getContext(), "add to fav list", Toast.LENGTH_SHORT).show();
                         return;
                     } else {
                         new DataBaseHelper(context).deleteRecordTo_FavoriteTABLE(myTextView.getText().toString());
@@ -125,10 +127,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                         new DataBaseHelper(context).updateDataFor(Utils.Openedlist, "favorite_or_not",
                                 "isNotFavorite", myTextView.getText().toString());
 
-
                         favImageView.setTag("ic_favorite_off");
                         favImageView.setImageResource(R.drawable.ic_favorite_off);
-                        Toast.makeText(v.getContext(), "removed to fav list", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

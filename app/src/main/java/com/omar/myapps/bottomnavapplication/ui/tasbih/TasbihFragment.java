@@ -12,13 +12,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.omar.myapps.bottomnavapplication.DataBaseHelper;
@@ -36,6 +40,7 @@ public class TasbihFragment extends Fragment {
 
     private Button showTotalBTN;
     private ImageView clickedImageView;
+    private ScrollView scrollView;
 
     private View.OnClickListener showTotalBTnListener = new View.OnClickListener() {
         @Override
@@ -50,21 +55,17 @@ public class TasbihFragment extends Fragment {
     private View.OnClickListener ImageOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            doAnimation();
 
-            /*
-// for sound when click
-                    if (Utils.getSoundIsOn() == 1) {
-                        mediaPlayer.start();
-                    }
+            // for animation when click
+            if (Utils.Animation_On_Off.equals("on")) {
+                doAnimation();
+            }
 
-                    // for animation
-                    if (Utils.getAnimationOn() == 1) {
-                        doAnimation();
-                    }
+            // for sound when click
+            if (Utils.Sound_On_Off.equals("on")) {
+                mediaPlayer.start();
+            }
 
-
-             */
             String prayerNam = prayerName.getText().toString();
             int n = Utils.getLastUpdatedValueFromTable(Utils.Openedlist, prayerNam);
             int updatedValue = n + 1;
@@ -78,11 +79,6 @@ public class TasbihFragment extends Fragment {
                         Utils.Openedlist, "Total_number", String.valueOf(updatedValue), prayerNam);
             } else {
 
-               /*         if (Utils.getSoundIsOn() == 1) {
-                            mediaPlayer.start();
-                        }
-
-                */
                 progressBar.setProgress(progressValue + 1);
                 totalNumTextView.setText(Utils.replaceToArabicNumbers(String.valueOf(totalNumber += 1)));
                 new DataBaseHelper(v.getContext()).updateDataFor(
@@ -95,19 +91,38 @@ public class TasbihFragment extends Fragment {
     private void init(View root) {
 
         progressBar = root.findViewById(R.id.progressBar);
-        //  progressBar.setMax(Utils.getCounterLimit());
         totalNumTextView = root.findViewById(R.id.totalNumbertextView);
         prayerName = root.findViewById(R.id.prayerNametextView);
         showTotalBTN = root.findViewById(R.id.showTotalBTN);
         clickedImageView = root.findViewById(R.id.clickingImage);
-        //  initSoundSetting();
 
+        initSoundSetting();
+        initMAXlimitForProgressBar();
+
+    }
+
+
+    private void initMAXlimitForProgressBar() {
+        if (Utils.ProgressBARMaxLimit.equals("10")) {
+            progressBar.setMax(10);
+        } else if (Utils.ProgressBARMaxLimit.equals("100")) {
+            progressBar.setMax(100);
+        } else if (Utils.ProgressBARMaxLimit.equals("1000")) {
+            progressBar.setMax(1000);
+        }
+    }
+
+    private void initSoundSetting() {
+        if (Utils.Sound_On_Off.equals("on")) {
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.all_eyes_on_me);
+            mediaPlayer.setVolume(0.1f, 0.1f);
+        }
     }
 
     void scrollTextViewInsideScrollView(View root) {
         prayerName.setMovementMethod(new ScrollingMovementMethod());
 
-        ScrollView scrollView = root.findViewById(R.id.scrollView);
+        scrollView = root.findViewById(R.id.scrollView);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -136,22 +151,59 @@ public class TasbihFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View root = inflater.inflate(R.layout.tasbih_fragment, container, false);
         init(root);
         scrollTextViewInsideScrollView(root);
 
+        if (Utils.Day_Night_Mode.equals("day")) {
+            setDayMood(root);
+        } else {
+            setNightMood(root);
+        }
 
         if (Utils.getClickedPrayerName() != null) {
             prayerName.setText(Utils.getClickedPrayerName());
 
-        } else Toast.makeText(getContext(), "no data inside bundle", Toast.LENGTH_SHORT).show();
-
+        } else {
+            Utils.Openedlist = "ALLAH_NAMES_TABLE";
+            new Utils(getContext()).getDateFrom(getContext(), DataBaseHelper.ALLAH_NAMES_TABLE);
+            prayerName.setText(Utils.getArrayList().get(0));// get 1st element
+        }
 
         clickedImageView.setOnClickListener(ImageOnClickListener);
         showTotalBTN.setOnClickListener(showTotalBTnListener);
 
         return root;
+    }
+
+    private void setDayMood(View root) {
+        scrollView.setBackgroundColor(getResources().getColor(R.color.day_background));
+
+        TextView prayerNametextView = root.findViewById(R.id.prayerNametextView);
+        prayerNametextView.setTextColor(getResources().getColor(R.color.gray));
+        prayerNametextView.setBackground(getResources().getDrawable(R.drawable.day_rounded_bg));
+
+        prayerNametextView.setTextColor(getResources().getColor(R.color.gray));
+
+
+        ImageView clickingImage = root.findViewById(R.id.clickingImage);
+        clickingImage.setBackground(getResources().getDrawable(R.drawable.day_changeable_color));
+
+    }
+
+    private void setNightMood(View root) {
+        scrollView.setBackgroundColor(getResources().getColor(R.color.night_background));
+
+        TextView prayerNametextView = root.findViewById(R.id.prayerNametextView);
+        prayerNametextView.setTextColor(getResources().getColor(R.color.white_color));
+        prayerNametextView.setBackground(getResources().getDrawable(R.drawable.night_rounded_bg));
+
+        prayerNametextView.setTextColor(getResources().getColor(R.color.white_color));
+
+
+        ImageView clickingImage = root.findViewById(R.id.clickingImage);
+        clickingImage.setBackground(getResources().getDrawable(R.drawable.night_changeable_color));
+
     }
 
     private void doAnimation() {

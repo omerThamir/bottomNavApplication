@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnDa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dataBaseHelper = new DataBaseHelper(MainActivity.this);
+        getSettingFromDBAndGiveITToUtils();
+
         navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -38,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnDa
         //   NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
     }
 
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnDa
             Utils.Day_Night_Mode = (settingCur.getString(1));// only for second column(day night)
             Utils.Sound_On_Off = (settingCur.getString(2));// only for 3rd column(sound)
             Utils.Animation_On_Off = (settingCur.getString(3));// only for 4th column(ani,ation)
+            Utils.ProgressBARMaxLimit = (settingCur.getString(4));// only for 5th column(max limit)
         }
     }
 
@@ -87,6 +91,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnDa
     protected void onResume() {
         super.onResume();
         getSettingFromDBAndGiveITToUtils();
+        if (Utils.Day_Night_Mode.equals("day")) {
+            navView.setBackground(getResources().getDrawable(R.drawable.day_bg_but_nav_view));
+        }else {
+            navView.setBackground(getResources().getDrawable(R.drawable.night_bg_but_nav_view));
+        }
     }
 }
 

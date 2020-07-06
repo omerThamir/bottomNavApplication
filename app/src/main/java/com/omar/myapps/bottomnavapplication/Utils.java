@@ -17,6 +17,7 @@ public class Utils {
     public static String Day_Night_Mode;
     public static String Sound_On_Off;
     public static String Animation_On_Off;
+    public static String ProgressBARMaxLimit;
     DataBaseHelper dataBaseHelper;
 
     static ArrayList<String> arrayList;
@@ -30,13 +31,12 @@ public class Utils {
     }
 
     public static String Openedlist;
-    public static boolean is_favorite = false;
 
     public static void getDateFrom(Context context, String TABLE_NAME) {
 
         Cursor cursor = new DataBaseHelper(context).getData(TABLE_NAME);
         if (cursor.getCount() == 0) {
-            Toast.makeText(context, "there is no data to show", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "لم يتم اضافة اي عنصر الى القائمة المفضلة", Toast.LENGTH_LONG).show();
         }
         while (cursor.moveToNext()) {
             arrayList.add(cursor.getString(0));// only for 1st column and add them to array list of prays

@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/day_background">
 
 
     <LinearLayout
@@ -19,28 +20,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:background="@drawable/rounded_bg"
+            android:background="@drawable/day_rounded_bg"
+            android:gravity="center"
             android:maxHeight="200dp"
             android:minHeight="60dp"
             android:padding="10dp"
             android:scrollbars="vertical"
             android:text="111111111111111111111"
-            android:textAlignment="center"
             android:textColor="#000"
             android:textSize="20sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+
+            >
 
 
             <ImageView
                 android:id="@+id/clickingImage"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_margin="50dp"
-                android:background="@drawable/changeable_color"
+                android:background="@drawable/day_changeable_color"
+
                 android:scaleType="center"
                 android:src="@drawable/ic_heart"
                 app:layout_constraintBottom_toBottomOf="@+id/progressBar"
@@ -70,6 +73,7 @@
                 android:layout_height="250dp"
                 android:layout_centerInParent="true"
                 android:max="10"
+
                 android:progressDrawable="@drawable/circular_shape"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,11 +84,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:layout_marginTop="30dp"
             android:id="@+id/showTotalBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             android:text="عرض المجموع">
 
         </Button>
