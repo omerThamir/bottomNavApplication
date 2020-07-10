@@ -18,16 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/backSetringBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_backspace"></ImageButton>
 
             <TextView
                 android:id="@+id/setTV0"
@@ -35,16 +27,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
 
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="21dp"
                 android:layout_weight="1"
                 android:text="الإعدادات"
-                android:textSize="18dp" />
+                android:textSize="19dp" />
+
+            <ImageButton
+                android:id="@+id/backSetringBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_backspace"></ImageButton>
+
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dayNightlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -52,11 +52,7 @@
             android:padding="10dp">
 
 
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp" />
+
 
 
             <TextView
@@ -68,135 +64,22 @@
 
                 android:paddingRight="20dp"
                 android:text="تفعيل الوضع الليلي"
-                android:textSize="15dp" />
+                android:textSize="17dp" />
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/gray"></View>
-
-        <TextView
-            android:id="@+id/setTV2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-
-            android:text="ضبط الصوت والرسوم المتحركة عند النقر"
-            android:textSize="16dp" />
-
-        <LinearLayout
-            android:id="@+id/activationSoundlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <Switch
-                    android:id="@+id/soundSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
-
-                <TextView
-                    android:id="@+id/setTV3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingRight="20dp"
-                    android:text="تفعيل الصوت"
-                    android:textSize="15dp" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
-
-                <Switch
-                    android:id="@+id/animationSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
-
-                <TextView
-                    android:id="@+id/setTV4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingRight="20dp"
-                    android:text="تفعيل الرسوم المتحركة"
-                    android:textSize="15dp" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/gray"></View>
-
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp">
-
-            <Spinner
-                android:id="@+id/maxLimitSpinner"
+            <Switch
+                android:id="@+id/switch1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
-
-            <TextView
-                android:id="@+id/setTV7"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-
-                android:paddingRight="10dp"
-                android:text="الحد الأقصى لشريط التقدم"
-                android:textSize="15dp" />
-
+                android:paddingLeft="10dp" />
 
         </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="10dp"
             android:background="@color/gray"></View>
-
 
         <LinearLayout
 
@@ -208,15 +91,8 @@
             android:orientation="horizontal">
 
 
-            <Switch
-                android:id="@+id/resetAllCountersSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
-
             <TextView
-                android:id="@+id/setTV14"
+                android:id="@+id/setTV2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -224,7 +100,14 @@
                 android:layout_weight="1"
                 android:paddingLeft="20dp"
                 android:text="إعادة تعيين جميع العدادات إلى الصفر"
-                android:textSize="15dp" />
+                android:textSize="17dp" />
+
+            <Switch
+                android:id="@+id/resetAllCountersSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
 
         </LinearLayout>
 
@@ -238,12 +121,12 @@
             android:background="@color/gray"></View>
 
         <TextView
-            android:id="@+id/setTV5"
+            android:id="@+id/setTV3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="إعادة تعيين العدادات فرديا إلى الصفر"
-            android:textSize="16dp" />
+            android:textSize="17dp" />
 
 
         <LinearLayout
@@ -262,15 +145,8 @@
                 android:orientation="horizontal">
 
 
-                <Switch
-                    android:id="@+id/resetFavSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
-
                 <TextView
-                    android:id="@+id/setTV8"
+                    android:id="@+id/setTV4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -278,7 +154,14 @@
                     android:layout_weight="1"
                     android:paddingRight="20dp"
                     android:text="القائمة المفضلة"
-                    android:textSize="15dp" />
+                    android:textSize="17dp" />
+
+                <Switch
+                    android:id="@+id/resetFavSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
 
             </LinearLayout>
 
@@ -291,12 +174,34 @@
                 android:orientation="horizontal">>
 
 
+                <TextView
+                    android:id="@+id/setTV5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingRight="20dp"
+                    android:text="قائمة أسماء الله الحسنى"
+                    android:textSize="17dp" />
+
                 <Switch
                     android:id="@+id/reseAllahNameSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">>
+
 
                 <TextView
                     android:id="@+id/setTV6"
@@ -306,19 +211,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:paddingRight="20dp"
-                    android:text="قائمة أسماء الله الحسنى"
-                    android:textSize="15dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">>
-
+                    android:text="ادعية من القران الكريم"
+                    android:textSize="17dp" />
 
                 <Switch
                     android:id="@+id/resetDuaaQuranSwitch"
@@ -327,17 +221,6 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp" />
 
-                <TextView
-                    android:id="@+id/setTV11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingRight="20dp"
-                    android:text="ادعية من القران الكريم"
-                    android:textSize="15dp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -347,6 +230,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">>
+
+                <TextView
+                    android:id="@+id/setTV7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingRight="20dp"
+                    android:text="آيات التسبيح في القرآن الكريم"
+                    android:textSize="17dp" />
 
 
                 <Switch
@@ -356,17 +250,6 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp" />
 
-                <TextView
-                    android:id="@+id/setTV12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingRight="20dp"
-                    android:text="آيات التسبيح في القرآن الكريم"
-                    android:textSize="15dp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -377,6 +260,17 @@
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">>
 
+
+                <TextView
+                    android:id="@+id/setTV8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingRight="20dp"
+                    android:text="آيات الاستغفار في القرآن الكريم"
+                    android:textSize="17dp" />
 
                 <Switch
                     android:id="@+id/resetAyatEsghhfarSwitch"
@@ -385,17 +279,6 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp" />
 
-                <TextView
-                    android:id="@+id/setTV13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingRight="20dp"
-                    android:text="آيات الاستغفار في القرآن الكريم"
-                    android:textSize="15dp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -406,13 +289,6 @@
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">>
 
-
-                <Switch
-                    android:id="@+id/resetMorningZKRSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
 
                 <TextView
                     android:id="@+id/setTV9"
@@ -423,7 +299,14 @@
                     android:layout_weight="1"
                     android:paddingRight="20dp"
                     android:text="قائمة اذكار الصباح"
-                    android:textSize="15dp" />
+                    android:textSize="17dp" />
+
+                <Switch
+                    android:id="@+id/resetMorningZKRSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
 
             </LinearLayout>
 
@@ -436,12 +319,6 @@
                 android:orientation="horizontal">>
 
 
-                <Switch
-                    android:id="@+id/resetEveningZKRSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
 
                 <TextView
                     android:id="@+id/setTV10"
@@ -452,8 +329,15 @@
                     android:layout_weight="1"
                     android:paddingRight="20dp"
                     android:text="قائمة اذكار المساء"
-                    android:textSize="15dp" />
+                    android:textSize="17dp" />
 
+
+                <Switch
+                    android:id="@+id/resetEveningZKRSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
             </LinearLayout>
 
 

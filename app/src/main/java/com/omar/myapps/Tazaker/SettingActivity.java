@@ -1,8 +1,9 @@
-package com.omar.myapps.bottomnavapplication;
+package com.omar.myapps.Tazaker;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,33 +11,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
 
-    private TextView tv, tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tv9, tv10, tv11, tv12, tv13, tv14;
-    private Switch dayNightSwitch, resetAlLCounterSwitch, resetFavSwitch, soundSwitch, animationSwitch, resetEveningZKRSwitch, resetMorningZKRSwitch, resetDuaaQuranSwitch, resetAyatTasbihSwitch, reseAllahNameSwitch, resetAyatEsghhfarSwitch;
+    private TextView tv, tv1,tv2,tv3,tv4, tv5, tv6, tv7, tv8, tv9, tv10;
+    private Switch dayNightSwitch, resetAlLCounterSwitch, resetFavSwitch, resetEveningZKRSwitch, resetMorningZKRSwitch, resetDuaaQuranSwitch, resetAyatTasbihSwitch, reseAllahNameSwitch, resetAyatEsghhfarSwitch;
     private DataBaseHelper dbh;
 
     private ScrollView Setting_ScrollView;
-    private Spinner maxProgressBarLimit;
-    ArrayAdapter<String> spinnerProgressBarLimit;
-
 
     private void init() {
 
         Setting_ScrollView = findViewById(R.id.rootSettingScrollView);
 
         dayNightSwitch = findViewById(R.id.switch1);
-        soundSwitch = findViewById(R.id.soundSwitch);
-        animationSwitch = findViewById(R.id.animationSwitch);
-
 
         resetAlLCounterSwitch = findViewById(R.id.resetAllCountersSwitch);
         resetFavSwitch = findViewById(R.id.resetFavSwitch);
@@ -48,8 +40,6 @@ public class SettingActivity extends AppCompatActivity {
         resetEveningZKRSwitch = findViewById(R.id.resetEveningZKRSwitch);
 
 
-        maxProgressBarLimit = findViewById(R.id.maxLimitSpinner);
-
         tv = findViewById(R.id.setTV0);
         tv1 = findViewById(R.id.setTV1);
         tv2 = findViewById(R.id.setTV2);
@@ -57,16 +47,10 @@ public class SettingActivity extends AppCompatActivity {
         tv4 = findViewById(R.id.setTV4);
         tv5 = findViewById(R.id.setTV5);
         tv6 = findViewById(R.id.setTV6);
-
         tv7 = findViewById(R.id.setTV7);
         tv8 = findViewById(R.id.setTV8);
         tv9 = findViewById(R.id.setTV9);
         tv10 = findViewById(R.id.setTV10);
-        tv11 = findViewById(R.id.setTV11);
-        tv12 = findViewById(R.id.setTV12);
-        tv13 = findViewById(R.id.setTV13);
-        tv14 = findViewById(R.id.setTV14);
-
 
     }
 
@@ -87,42 +71,15 @@ public class SettingActivity extends AppCompatActivity {
                     setNightMoodForSettingActivity();
                     dbh.updateSettingTable(DataBaseHelper.SETTING_Col2, "night");
                     Utils.Day_Night_Mode = "night"; //true
+
                 } else {
                     setDayMoodForSettingActivity();
                     dbh.updateSettingTable(DataBaseHelper.SETTING_Col2, "day");
                     Utils.Day_Night_Mode = "day"; //false
+
                 }
             }
         });
-
-        // fro updating database new value and make changes for ability to add new
-
-        soundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    dbh.updateSettingTable(DataBaseHelper.SETTING_Col3, "on");
-                    Utils.Sound_On_Off = "on";
-                } else {
-                    dbh.updateSettingTable(DataBaseHelper.SETTING_Col3, "off");
-                    Utils.Sound_On_Off = "off";
-                }
-            }
-        });
-
-        animationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    dbh.updateSettingTable(DataBaseHelper.SETTING_Col4, "on");
-                    Utils.Animation_On_Off = "on";
-                } else {
-                    dbh.updateSettingTable(DataBaseHelper.SETTING_Col4, "of");
-                    Utils.Animation_On_Off = "off";
-                }
-            }
-        });
-
 
         resetAlLCounterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -214,20 +171,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-
-        maxProgressBarLimit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedValue = parent.getItemAtPosition(position).toString();
-                dbh.updateSettingTable(DataBaseHelper.SETTING_Col5, selectedValue);
-                Utils.ProgressBARMaxLimit = selectedValue;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     private void showYesNoDialogBuilder(final String TABLE_NAME, final Switch Working_Switch) {
@@ -266,7 +209,6 @@ public class SettingActivity extends AppCompatActivity {
     private void setNightMoodForSettingActivity() {
         Setting_ScrollView.setBackgroundColor(getResources().getColor(R.color.night_background));
         setAllTextColorAsWhite();
-        setSpinnerDayNight("night");
     }
 
 
@@ -282,16 +224,11 @@ public class SettingActivity extends AppCompatActivity {
         tv8.setTextColor(getResources().getColor(R.color.white_color));
         tv9.setTextColor(getResources().getColor(R.color.white_color));
         tv10.setTextColor(getResources().getColor(R.color.white_color));
-        tv11.setTextColor(getResources().getColor(R.color.white_color));
-        tv12.setTextColor(getResources().getColor(R.color.white_color));
-        tv13.setTextColor(getResources().getColor(R.color.white_color));
-        tv14.setTextColor(getResources().getColor(R.color.white_color));
     }
 
     private void setDayMoodForSettingActivity() {
         Setting_ScrollView.setBackgroundColor(getResources().getColor(R.color.day_background));
         setAllTextColorAsblack();
-        setSpinnerDayNight("day");
     }
 
     private void setAllTextColorAsblack() {
@@ -306,10 +243,6 @@ public class SettingActivity extends AppCompatActivity {
         tv8.setTextColor(getResources().getColor(R.color.night_background));
         tv9.setTextColor(getResources().getColor(R.color.night_background));
         tv10.setTextColor(getResources().getColor(R.color.night_background));
-        tv11.setTextColor(getResources().getColor(R.color.night_background));
-        tv12.setTextColor(getResources().getColor(R.color.night_background));
-        tv13.setTextColor(getResources().getColor(R.color.night_background));
-        tv14.setTextColor(getResources().getColor(R.color.night_background));
 
         //for description setting category
 
@@ -320,41 +253,12 @@ public class SettingActivity extends AppCompatActivity {
 
         String n = Utils.Day_Night_Mode;
         if (n.equals("day")) {
-            dayNightSwitch.setChecked(false);
             setDayMoodForSettingActivity();
+            dayNightSwitch.setChecked(false);
         } else {
-            dayNightSwitch.setChecked(true);
             setNightMoodForSettingActivity();
+            dayNightSwitch.setChecked(true);
         }
-
-
-        // set soundOn/off switch
-        if (Utils.Sound_On_Off.equals("on")) {
-            soundSwitch.setChecked(true);
-
-        } else {
-            soundSwitch.setChecked(false);
-
-        }
-
-        if (Utils.Animation_On_Off.equals("on")) {
-            animationSwitch.setChecked(true);
-
-        } else {
-            animationSwitch.setChecked(false);
-
-        }
-
-        // set sound spinner selected item
-
-        if (Utils.ProgressBARMaxLimit.equals("10")) {
-            maxProgressBarLimit.setSelection(0);
-        } else if (Utils.ProgressBARMaxLimit.equals("100")) {
-            maxProgressBarLimit.setSelection(1);
-        } else if (Utils.ProgressBARMaxLimit.equals("1000")) {
-            maxProgressBarLimit.setSelection(2);
-        }
-
 
     }
 
@@ -365,16 +269,4 @@ public class SettingActivity extends AppCompatActivity {
         takeSettingsFromDataBase();
     }
 
-    void setSpinnerDayNight(String which) {
-
-        String[] arr = {"10", "100", "1000"};
-
-        if (which == "day") {
-            spinnerProgressBarLimit = new ArrayAdapter<String>(this, R.layout.spinner_item_day, arr);
-        } else {
-            spinnerProgressBarLimit = new ArrayAdapter<String>(this, R.layout.spinner_item_night, arr);
-        }
-        maxProgressBarLimit.setAdapter(spinnerProgressBarLimit);
-
-    }
 }

@@ -1,5 +1,6 @@
-package com.omar.myapps.bottomnavapplication.ui.dashboard;
+package com.omar.myapps.Tazaker.ui.dashboard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,33 +10,24 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ScrollView;
-import android.widget.Scroller;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.omar.myapps.bottomnavapplication.DataBaseHelper;
-import com.omar.myapps.bottomnavapplication.MainActivity;
-import com.omar.myapps.bottomnavapplication.R;
-import com.omar.myapps.bottomnavapplication.SettingActivity;
-import com.omar.myapps.bottomnavapplication.Utils;
+import com.omar.myapps.Tazaker.DataBaseHelper;
+import com.omar.myapps.Tazaker.MainActivity;
+import com.omar.myapps.Tazaker.R;
+import com.omar.myapps.Tazaker.SettingActivity;
+import com.omar.myapps.Tazaker.Utils;
 
 public class DashboardFragment extends Fragment {
 
     private void initToolBar(View root) {
         Toolbar toolbar = root.findViewById(R.id.toolbar);
-        toolbar.setTitle("Program Name");
-        toolbar.setLogo(R.drawable.ic_launcher_foreground);
-        toolbar.setSubtitle("by Omar Thamer");
 
         //placing toolbar in place of actionbar
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -161,6 +153,9 @@ public class DashboardFragment extends Fragment {
         ScrollView dash_frag_scrollView = root.findViewById(R.id.dashFrag_SrollVIEW);
         dash_frag_scrollView.setBackgroundColor(getResources().getColor(R.color.night_background));
 
+        Toolbar toolbar = root.findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.night_background));
+        toolbar.setPopupTheme(R.style.NightPopupTheme);
         // and change all text views in dashboard view to gray or black
 
         TextView favTextV = root.findViewById(R.id.favTextV);
@@ -196,6 +191,11 @@ public class DashboardFragment extends Fragment {
     private void setDayMood(View root) {
         ScrollView dash_frag_scrollView = root.findViewById(R.id.dashFrag_SrollVIEW);
         dash_frag_scrollView.setBackgroundColor(getResources().getColor(R.color.day_background));
+
+      Toolbar toolbar=  root.findViewById(R.id.toolbar);
+        toolbar.setPopupTheme(R.style.DayPopupTheme);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.day_toolBarColor));
+
 
         TextView favTextV = root.findViewById(R.id.favTextV);
         favTextV.setTextColor(getResources().getColor(R.color.gray));

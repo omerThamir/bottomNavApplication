@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E91E63</color>
-    <color name="colorPrimaryDark">#E91E63</color>
-    <color name="colorAccent">#E91E63</color>
+    <color name="day_colorPrimary">#63077C</color>
+    <color name="day_colorPrimaryDark">#50045E</color>
+    <color name="colorAccent">#533459</color>
+
+    <color name="day_toolBarColor">#63077C</color>
+
     <color name="day_background">#ECEBEB</color>
     <color name="white_color">#D3D5CDCD</color>
     <color name="night_background">#111920</color>

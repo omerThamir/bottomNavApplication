@@ -1,4 +1,4 @@
-package com.omar.myapps.bottomnavapplication;
+package com.omar.myapps.Tazaker;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.omar.myapps.bottomnavapplication.ui.list.ListFragment;
+import com.omar.myapps.Tazaker.ui.list.ListFragment;
 
 import java.util.List;
 

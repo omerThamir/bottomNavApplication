@@ -4,18 +4,18 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="البداية" />
 
     <item
         android:id="@+id/navigation_list"
         android:icon="@drawable/ic_list_black_24dp"
-        android:title="list" />
+        android:title="القائمة" />
 
 
     <item
         android:id="@+id/navigation_tasbih"
         android:icon="@drawable/ic_touch_app_black_24dp"
-        android:title="praying "/>
+        android:title="التسبيح"/>
 
 
 </menu>

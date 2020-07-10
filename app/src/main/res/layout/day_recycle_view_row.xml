@@ -9,15 +9,18 @@
     android:minHeight="100dp"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/favImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/prayerindextextView"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center"
+
         android:gravity="center"
-        android:padding="6dp"
-        android:src="@drawable/ic_favorite_off"
-        android:tag="isNotFavorite" />
+        android:padding="10dp"
+        android:text="01"
+        android:textColor="#393838"
+        android:textSize="20sp" />
+
 
     <TextView
         android:id="@+id/prayerNametextView"
@@ -32,17 +35,16 @@
         android:textColor="#1C1C1C"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/prayerindextextView"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
 
+    <ImageView
+        android:id="@+id/favImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:padding="10dp"
-        android:text="01"
-        android:textColor="#393838"
-        android:textSize="20sp" />
+        android:padding="6dp"
+        android:src="@drawable/ic_favorite_off"
+        android:tag="isNotFavorite" />
 
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.omar.myapps.bottomnavapplication.ui.list;
+package com.omar.myapps.Tazaker.ui.list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,17 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.omar.myapps.bottomnavapplication.DataBaseHelper;
-import com.omar.myapps.bottomnavapplication.MyRecyclerViewAdapter;
-import com.omar.myapps.bottomnavapplication.R;
-import com.omar.myapps.bottomnavapplication.Utils;
+import com.omar.myapps.Tazaker.DataBaseHelper;
+import com.omar.myapps.Tazaker.MyRecyclerViewAdapter;
+import com.omar.myapps.Tazaker.R;
+import com.omar.myapps.Tazaker.Utils;
 
 import java.util.List;
 

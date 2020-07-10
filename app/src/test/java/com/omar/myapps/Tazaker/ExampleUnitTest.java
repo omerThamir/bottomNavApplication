@@ -1,4 +1,4 @@
-package com.omar.myapps.bottomnavapplication;
+package com.omar.myapps.Tazaker;
 
 import org.junit.Test;
 

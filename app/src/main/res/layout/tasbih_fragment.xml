@@ -8,19 +8,100 @@
     android:layout_height="match_parent"
     android:background="@color/day_background">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingBottom="?actionBarSize">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/day_rounded_bg_for_tabih_fragment"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/soundImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/day_rounded_bg_for_setting_frgment"
+                android:src="@drawable/ic_sound_on_24"></ImageView>
+
+            <ImageView
+                android:id="@+id/animiImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/day_rounded_bg_for_setting_frgment"
+                android:src="@drawable/ic_animi_on_24"></ImageView>
+
+            <ImageView
+                android:id="@+id/resetImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/day_rounded_bg_for_setting_frgment"
+                android:src="@drawable/ic_reset_24"></ImageView>
+
+
+            <ImageView
+                android:id="@+id/totalImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/day_rounded_bg_for_setting_frgment"
+                android:src="@drawable/ic_total_24"></ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/day_rounded_bg_for_tabih_fragment"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+
+            <TextView
+                android:id="@+id/setTV7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingRight="10dp"
+                android:text="الحد الأقصى لشريط التقدم"
+                android:textSize="17dp" />
+
+
+            <Spinner
+                android:id="@+id/maxLimitSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+
+        </LinearLayout>
+
+
         <TextView
             android:id="@+id/prayerNametextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:background="@drawable/day_rounded_bg"
+            android:background="@drawable/day_rounded_bg_for_tabih_fragment"
             android:gravity="center"
             android:maxHeight="200dp"
             android:minHeight="60dp"
@@ -82,16 +163,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <Button
-            android:id="@+id/showTotalBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="عرض المجموع">
-
-        </Button>
 
     </LinearLayout>
 </ScrollView>
