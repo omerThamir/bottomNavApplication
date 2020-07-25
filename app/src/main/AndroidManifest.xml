@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.omar.myapps.Tazaker">
+    package="com.omar.myapps.Azkar">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DayAppTheme">
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name="com.omar.myapps.Azkar.SettingActivity"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.omar.myapps.Azkar.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,15 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.omar.myapps.Tazaker.NotificationReceiver"></receiver>
+        <receiver android:name="com.omar.myapps.Azkar.NotificationReceiver"></receiver>
+
+        <receiver
+            android:name=".SampleBootReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
 
     </application>
 

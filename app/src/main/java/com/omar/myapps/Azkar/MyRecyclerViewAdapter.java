@@ -1,4 +1,4 @@
-package com.omar.myapps.Tazaker;
+package com.omar.myapps.Azkar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.omar.myapps.Tazaker.ui.list.ListFragment;
+import com.omar.myapps.Azkar.ui.list.ListFragment;
 
 import java.util.List;
 
@@ -23,7 +23,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private List<String> mData;
     private List<String> FavorNotList;
     private LayoutInflater mInflater;
-    //  private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     public MyRecyclerViewAdapter(Context context, List<String> data, List<String> favor_not_list, Fragment fragment) {
@@ -53,8 +52,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         String prayerNameStr = mData.get(position);
         holder.myTextView.setText(prayerNameStr);
 
-        // hiding fav icon in fav list
-        if (Utils.Openedlist == DataBaseHelper.FAVORITE_ZKR_TABLE) {
+        // hiding fav icon from fav list duaa mait lit, duaa kathm alquran
+        if (Utils.Openedlist == DataBaseHelper.FAVORITE_ZKR_TABLE ||
+                Utils.Openedlist == DataBaseHelper.Duaa_Almait_TABLE ||
+                Utils.Openedlist == DataBaseHelper.Duaa_Khhatm_TABLE ||
+                Utils.Openedlist == "WC_ZKR_TABLE" || Utils.Openedlist == "FOOD_ZKR_TABLE"
+                || Utils.Openedlist == "WDHOO_ZKR_TABLE"
+
+                || Utils.Openedlist == "MASJED_ZKR_TABLE"
+        ) {
             holder.favImageView.setVisibility(View.GONE);
         } else {
             holder.favImageView.setVisibility(View.VISIBLE);
@@ -83,7 +89,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView myTextView, prayerindex;
-        ImageView favImageView;
+        ImageView favImageView, shareImageView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -91,15 +97,23 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             prayerindex = itemView.findViewById(R.id.prayerindextextView);
             favImageView = itemView.findViewById(R.id.favImageView);
 
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (Utils.Openedlist == DataBaseHelper.Duaa_Almait_TABLE ||
+                            Utils.Openedlist == DataBaseHelper.Duaa_Khhatm_TABLE ||
+                            Utils.Openedlist == "WC_ZKR_TABLE" || Utils.Openedlist == "FOOD_ZKR_TABLE"
+                            || Utils.Openedlist == "WDHOO_ZKR_TABLE"
+                            || Utils.Openedlist == "MASJED_ZKR_TABLE") {
+                    // do nothing
+                    } else {
+                        // when click the item row: take prayer name for the text view to be used lator
+                        ((ListFragment) fragment).passData(myTextView.getText().toString());
 
-                    // when click the item row: take prayer name for the text view to be used lator
-                    ((ListFragment) fragment).passData(myTextView.getText().toString());
-
-                    if (context instanceof MainActivity) {
-                        ((MainActivity) context).switchToFragment3();
+                        if (context instanceof MainActivity) {
+                            ((MainActivity) context).switchToFragment3();
+                        }
                     }
                 }
             });
@@ -108,7 +122,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 @Override
                 public void onClick(View v) {
 
-                    if ("isNotFavorite".equals(favImageView.getTag().toString())) {
+                    if (favImageView.getTag().toString().equals("isNotFavorite")) {
                         //    add  it  to fav table and add it as change fav or not to is favorited in its table
 
                         new DataBaseHelper(context).addRecordTo_FavoriteTABLE(
@@ -117,8 +131,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                         new DataBaseHelper(context).updateDataFor(Utils.Openedlist, "favorite_or_not",
                                 "isFavorite", myTextView.getText().toString());
 
-
-                        favImageView.setTag("ic_favorite_on");
+                        favImageView.setTag("isFavorite");
                         favImageView.setImageResource(R.drawable.ic_favorite_on);
                         return;
                     } else {
@@ -127,19 +140,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                         new DataBaseHelper(context).updateDataFor(Utils.Openedlist, "favorite_or_not",
                                 "isNotFavorite", myTextView.getText().toString());
 
-                        favImageView.setTag("ic_favorite_off");
+                        favImageView.setTag("isNotFavorite");
                         favImageView.setImageResource(R.drawable.ic_favorite_off);
                         return;
                     }
-
                 }
 
 
             });
 
 
-        }
 
+
+        }
 
     }
 

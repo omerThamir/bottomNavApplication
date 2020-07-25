@@ -4,12 +4,11 @@
 
     <item
 
-        android:icon="@drawable/ic_baseline_more_vert_24"
+        android:icon="@drawable/ic_night_more_vert_24"
         android:title=""
         app:showAsAction="always">
 
         <menu>
-
             <item
                 android:id="@+id/setting_itemID"
                 android:icon="@drawable/ic_baseline_settings_24"
@@ -19,7 +18,7 @@
             <item
                 android:id="@+id/about_itemID"
                 android:icon="@drawable/ic_baseline_info_24"
-                android:title="حول"
+                android:title="حول التطبيق"
                 app:showAsAction="ifRoom" />
 
             <item

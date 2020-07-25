@@ -11,7 +11,7 @@
 
     <item>
         <shape android:layout_width="match_parent" android:layout_height="wrap_content">
-            <solid android:color="#FEF6F5F5"></solid>
+            <solid android:color="#FEF8F8F8"></solid>
 
             <stroke android:width="0.5dip" android:color="#9A151515" />
             <corners android:radius="10dp"></corners>

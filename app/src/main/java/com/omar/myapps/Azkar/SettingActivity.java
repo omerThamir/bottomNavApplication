@@ -1,25 +1,23 @@
-package com.omar.myapps.Tazaker;
+package com.omar.myapps.Azkar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 public class SettingActivity extends AppCompatActivity {
 
-    private TextView tv, tv1,tv2,tv3,tv4, tv5, tv6, tv7, tv8, tv9, tv10;
-    private Switch dayNightSwitch, resetAlLCounterSwitch, resetFavSwitch, resetEveningZKRSwitch, resetMorningZKRSwitch, resetDuaaQuranSwitch, resetAyatTasbihSwitch, reseAllahNameSwitch, resetAyatEsghhfarSwitch;
+    private TextView tv, tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tv9, tv10, tv11;
+    private Switch dayNightSwitch, notificationSwitch, resetAlLCounterSwitch, resetFavSwitch, resetEveningZKRSwitch, resetMorningZKRSwitch, resetDuaaQuranSwitch, resetAyatTasbihSwitch, reseAllahNameSwitch, resetAyatEsghhfarSwitch;
     private DataBaseHelper dbh;
 
     private ScrollView Setting_ScrollView;
@@ -29,6 +27,7 @@ public class SettingActivity extends AppCompatActivity {
         Setting_ScrollView = findViewById(R.id.rootSettingScrollView);
 
         dayNightSwitch = findViewById(R.id.switch1);
+        notificationSwitch = findViewById(R.id.notificationSwitch);
 
         resetAlLCounterSwitch = findViewById(R.id.resetAllCountersSwitch);
         resetFavSwitch = findViewById(R.id.resetFavSwitch);
@@ -51,7 +50,7 @@ public class SettingActivity extends AppCompatActivity {
         tv8 = findViewById(R.id.setTV8);
         tv9 = findViewById(R.id.setTV9);
         tv10 = findViewById(R.id.setTV10);
-
+        tv11 = findViewById(R.id.setTV11);
     }
 
     @Override
@@ -159,6 +158,24 @@ public class SettingActivity extends AppCompatActivity {
                     // show yes no  dialog the delete
                     showYesNoDialogBuilder(DataBaseHelper.EVENING_ZKR_TABLE, resetEveningZKRSwitch);
                 }
+
+            }
+        });
+
+        notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Utils.startAlarm(getApplicationContext());
+                    dbh.updateSettingTable(DataBaseHelper.SETTING_Col6, "on");
+                    Utils.Notification_On_Off = "on";
+                    Toast.makeText(SettingActivity.this, "تم تفعيل الاشعار", Toast.LENGTH_SHORT).show();
+                } else {
+                    Utils.cancel(getApplicationContext());
+                    dbh.updateSettingTable(DataBaseHelper.SETTING_Col6, "off");
+                    Utils.Notification_On_Off = "off";
+                    Toast.makeText(SettingActivity.this, "تم ايقاف الاشعار", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -186,7 +203,7 @@ public class SettingActivity extends AppCompatActivity {
             builder.setTitle("تصفير العداد");
             builder.setMessage("سيتم تصفير هذا العداد , هل تصفيرهذا ذلك؟");
         }
-        builder.setIcon(R.drawable.ic_launcher_foreground);
+        builder.setIcon(R.mipmap.ic_launcher_round);
         builder.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -213,17 +230,18 @@ public class SettingActivity extends AppCompatActivity {
 
 
     private void setAllTextColorAsWhite() {
-        tv.setTextColor(getResources().getColor(R.color.white_color));
-        tv1.setTextColor(getResources().getColor(R.color.white_color));
-        tv2.setTextColor(getResources().getColor(R.color.white_color));
-        tv3.setTextColor(getResources().getColor(R.color.white_color));
-        tv4.setTextColor(getResources().getColor(R.color.white_color));
-        tv5.setTextColor(getResources().getColor(R.color.white_color));
-        tv6.setTextColor(getResources().getColor(R.color.white_color));
-        tv7.setTextColor(getResources().getColor(R.color.white_color));
-        tv8.setTextColor(getResources().getColor(R.color.white_color));
-        tv9.setTextColor(getResources().getColor(R.color.white_color));
-        tv10.setTextColor(getResources().getColor(R.color.white_color));
+        tv.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv1.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv2.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv3.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv4.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv5.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv6.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv7.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv8.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv9.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv10.setTextColor(getResources().getColor(R.color.night_text_color));
+        tv11.setTextColor(getResources().getColor(R.color.night_text_color));
     }
 
     private void setDayMoodForSettingActivity() {
@@ -243,13 +261,20 @@ public class SettingActivity extends AppCompatActivity {
         tv8.setTextColor(getResources().getColor(R.color.night_background));
         tv9.setTextColor(getResources().getColor(R.color.night_background));
         tv10.setTextColor(getResources().getColor(R.color.night_background));
-
+        tv11.setTextColor(getResources().getColor(R.color.night_background));
         //for description setting category
 
     }
 
 
     void takeSettingsFromDataBase() {
+
+        if (Utils.Notification_On_Off.equals("on")) {
+            notificationSwitch.setChecked(true);
+        } else {
+            notificationSwitch.setChecked(false);
+        }
+
 
         String n = Utils.Day_Night_Mode;
         if (n.equals("day")) {
@@ -268,5 +293,6 @@ public class SettingActivity extends AppCompatActivity {
         init();
         takeSettingsFromDataBase();
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.omar.myapps.Tazaker.ui.list;
+package com.omar.myapps.Azkar.ui.list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.omar.myapps.Tazaker.DataBaseHelper;
-import com.omar.myapps.Tazaker.MyRecyclerViewAdapter;
-import com.omar.myapps.Tazaker.R;
-import com.omar.myapps.Tazaker.Utils;
+import com.omar.myapps.Azkar.DataBaseHelper;
+import com.omar.myapps.Azkar.MyRecyclerViewAdapter;
+import com.omar.myapps.Azkar.R;
+import com.omar.myapps.Azkar.Utils;
 
 import java.util.List;
 
@@ -24,11 +24,8 @@ public class ListFragment extends Fragment {
     private List<String> prayList;
     private List<String> favOrNotList;
 
-
     MyRecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
-
-    Utils utils;
 
     View root;
 

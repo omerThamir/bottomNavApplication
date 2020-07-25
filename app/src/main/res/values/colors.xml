@@ -4,10 +4,11 @@
     <color name="day_colorPrimaryDark">#50045E</color>
     <color name="colorAccent">#533459</color>
 
-    <color name="day_toolBarColor">#63077C</color>
-
-    <color name="day_background">#ECEBEB</color>
-    <color name="white_color">#D3D5CDCD</color>
+    <color name="white">#Fff</color>
+    <color name="day_background">#EEFFFFFF</color>
+    <color name="night_text_color">#C1C5C4</color>
     <color name="night_background">#111920</color>
     <color name="gray">#5E5D5D</color>
+    <color name="violet">#50045E</color>
+
 </resources>

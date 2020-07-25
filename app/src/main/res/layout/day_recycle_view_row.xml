@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginRight="8dp"
+    android:layout_marginEnd="8dp"
     android:background="@drawable/day_rounded_bg"
     android:minHeight="100dp"
     android:orientation="horizontal">
@@ -19,7 +19,7 @@
         android:padding="10dp"
         android:text="01"
         android:textColor="#393838"
-        android:textSize="20sp" />
+        android:textSize="19dp" />
 
 
     <TextView
@@ -32,9 +32,8 @@
         android:minHeight="60dp"
         android:padding="10dp"
         android:text="some text"
-        android:textColor="#1C1C1C"
-        android:textSize="20sp" />
-
+        android:textColor="#50045E"
+        android:textSize="19sp" />
 
     <ImageView
         android:id="@+id/favImageView"
@@ -42,7 +41,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:padding="6dp"
+        android:padding="8dp"
         android:src="@drawable/ic_favorite_off"
         android:tag="isNotFavorite" />
 

@@ -1,4 +1,4 @@
-package com.omar.myapps.Tazaker;
+package com.omar.myapps.Azkar;
 
 import org.junit.Test;
 

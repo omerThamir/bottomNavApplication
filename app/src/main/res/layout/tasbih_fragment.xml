@@ -15,6 +15,7 @@
         android:paddingBottom="?actionBarSize">
 
         <LinearLayout
+            android:id="@+id/tasbihFrag_setting_Layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -29,43 +30,58 @@
                 android:id="@+id/soundImageView"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/day_rounded_bg_for_setting_frgment"
                 android:src="@drawable/ic_sound_on_24"></ImageView>
+
+
 
             <ImageView
                 android:id="@+id/animiImageView"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
+                android:layout_weight="1"
                 android:background="@drawable/day_rounded_bg_for_setting_frgment"
                 android:src="@drawable/ic_animi_on_24"></ImageView>
+
+
 
             <ImageView
                 android:id="@+id/resetImageView"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
+                android:layout_weight="1"
                 android:background="@drawable/day_rounded_bg_for_setting_frgment"
                 android:src="@drawable/ic_reset_24"></ImageView>
 
+            <ImageView
+                android:id="@+id/shareImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="4dp"
+
+                android:layout_weight="1"
+                android:background="@drawable/day_rounded_bg_for_setting_frgment"
+                android:src="@drawable/ic_share_24"
+                />
 
             <ImageView
                 android:id="@+id/totalImageView"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
+                android:layout_weight="1"
                 android:background="@drawable/day_rounded_bg_for_setting_frgment"
                 android:src="@drawable/ic_total_24"></ImageView>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tasbihFrag_setting_Layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
@@ -78,11 +94,12 @@
 
 
             <TextView
-                android:id="@+id/setTV7"
+                android:id="@+id/setMaxProgressBarTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:layout_marginLeft="2dp"
                 android:paddingRight="10dp"
                 android:text="الحد الأقصى لشريط التقدم"
                 android:textSize="17dp" />
@@ -108,7 +125,7 @@
             android:padding="10dp"
             android:scrollbars="vertical"
             android:text="111111111111111111111"
-            android:textColor="#000"
+            android:textColor="@color/violet"
             android:textSize="20sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

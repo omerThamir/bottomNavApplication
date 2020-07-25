@@ -6,19 +6,19 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.omar.myapps.Tazaker.ui.dashboard.DashboardFragment"
+        android:name="com.omar.myapps.Azkar.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_list"
-        android:name="com.omar.myapps.Tazaker.ui.list.ListFragment"
+        android:name="com.omar.myapps.Azkar.ui.list.ListFragment"
         android:label="List"
         tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/navigation_tasbih"
-        android:name="com.omar.myapps.Tazaker.ui.tasbih.TasbihFragment"
+        android:name="com.omar.myapps.Azkar.ui.tasbih.TasbihFragment"
         android:label="setting"
         tools:layout="@layout/tasbih_fragment" />
 

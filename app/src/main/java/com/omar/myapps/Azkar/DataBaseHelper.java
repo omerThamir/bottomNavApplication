@@ -1,4 +1,4 @@
-package com.omar.myapps.Tazaker;
+package com.omar.myapps.Azkar;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Prayers.db";
+    private static final String DATABASE_NAME = "DuaaWTasbih.db";
 
     public static final String SETTING_TABLE = "SETTING_TABLE";
 
@@ -18,7 +18,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String SETTING_Col3 = "sound_on_off";
     public static final String SETTING_Col4 = "animation_on_off";
     public static final String SETTING_Col5 = "Counter_limit";
-
+    public static final String SETTING_Col6 = "notification_on_off";
+    public static final String SETTING_Col7 = "notification_method_was_called";
 
     public static final String DUAA_FROM_QURAN_TABLE = "DUAA_FROM_QURAN_TABLE";
 
@@ -62,11 +63,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String AYATS_ESGHFAR_Col2 = "Total_number";
     public static final String AYATS_ESGHFAR_Col3 = "favorite_or_not";
 
+    public static final String Duaa_Khhatm_TABLE = "Duaa_Khhatm_TABLE";
+
+    public static final String Duaa_Khhatm_Col1 = "name";
+    public static final String Duaa_Khhatm_Col2 = "Total_number";
+    public static final String Duaa_Khhatm_Col3 = "favorite_or_not";
+
+    public static final String Duaa_Almait_TABLE = "Duaa_Almait_TABLE";
+
+    public static final String Duaa_Almait_Col1 = "name";
+    public static final String Duaa_WC_Col2 = "WC_ZKR";
+    public static final String Duaa_Almait_Col3 = "favorite_or_not";
+
+
     private Context context;
 
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 11);
+        super(context, DATABASE_NAME, null, 1);
         this.context = context;
     }
 
@@ -74,7 +88,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("create table " + SETTING_TABLE + "(" + SETTING_Col1 + " INTEGER," + SETTING_Col2 + " TEXT,"
-                + SETTING_Col3 + " TEXT ," + SETTING_Col4 + " TEXT," + SETTING_Col5 + " TEXT)");
+                + SETTING_Col3 + " TEXT ," + SETTING_Col4 + " TEXT," + SETTING_Col5 + " TEXT ," + SETTING_Col6 + " TEXT," + SETTING_Col7 + " TEXT)");
 
         db.execSQL("create table " + ALLAH_NAMES_TABLE + "(" + AllahNameCol1 + " TEXT," + AllahNameCol2 + " INTEGER default(0),"
                 + AllahNameCol3 + " TEXT default('not favorite'))");
@@ -99,6 +113,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + AYATS_ESGHFAR_Col3 + " TEXT default('not favorite'))");
 
 
+        db.execSQL("create table " + Duaa_Khhatm_TABLE + "(" + Duaa_Khhatm_Col1 + " TEXT," + Duaa_Khhatm_Col2 + " INTEGER default(0),"
+                + Duaa_Khhatm_Col3 + " TEXT default('not favorite'))");
+// tis table for duaa mait and xhala and duaa khatm
+        db.execSQL("create table " + Duaa_Almait_TABLE + "(" + Duaa_Almait_Col1 + " TEXT," + Duaa_WC_Col2 + " Text,"
+                + Duaa_Almait_Col3 + " TEXT default('not favorite'))");
+
+
         insertPreloadedDataTOAllahNameTable(db);
         preLoadingInsertDuaafromQuran(db);
         insertPreloadedDataTOEveuing_ZKR_Table(db);
@@ -106,11 +127,93 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         insertPreloadedDataTOSettingTable(db);
         insertPreloadedDataToAyatsOFTasbih(db);
         insertPreloadedDataToayat_Estghfar_Table(db);
+        insertPreloadedDataDuaaKhatm_Table(db);
+        insertPreloadedDataDuaaKAlmait_Table(db);
+    }
 
+    private void insertPreloadedDataDuaaKAlmait_Table(SQLiteDatabase db) {
+
+        String[] duaaAlmait = {"اللَّهُمَّ بشّره بقولك \"كلوا واشربوا هنيئاً بما أسلفتم في الأيّام الخالية\".",
+                "اللَّهُمَّ أنزله منزلاً مباركاً وأنت خير المنزلين.",
+                "اللَّهُمَّ عامله بما أنت أهله، ولا تعامله بما هو أهله.",
+                "اللَّهُمَّ أنزله منازل الصدّيقين والشّهداء والصّالحين، وحسن أولئك رفيقاً.",
+                "اللَّهُمَّ أبدله داراً خيراً من داره، وأهلاً خيراً من أهله، وأدخله الجنّة، وأعذه من عذاب القبر ومن عذاب النّار.",
+                "اللَّهُمَّ اجزه عن الإحسان إحساناً وعن الإساءة عفواً وغفراناً.",
+                "اللَّهُمَّ آنسه في وحدته وفي وحشته وفي غربته.",
+                "اللَّهُمَّ إن كان محسناً فزد من حسناته، وإن كان مسيئاً فتجاوز عن سيّئاته.",
+                "اللَّهُمَّ أدخله الجنّة من غير مناقشة حساب ولا سابقة عذاب.",
+                "اللَّهُمَّ أعذه من عذاب القبر، وجفاف ِالأرض عن جنبيها.",
+                "اللَّهُمَّ اجعل قبره روضةً من رياض الجنّة، ولا تجعله حفرةً من حفر النّار.",
+                "اللَّهُمَّ افسح له في قبره مدّ بصره، وافرش قبره من فراش الجنّة.",
+                "اللَّهُمَّ املأ قبره بالرّضا والنّور والفسحة والسّرور.",
+                "اللَّهُمَّ إنّه في ذمّتك وحبل جوارك، فقِهِِ فتنة القبر، وعذاب النّار، وأنت أهل الوفاء والحقّ، فاغفر له وارحمه إنّك أنت الغفور الرّحيم.",
+                "اللَّهُمَّ إنّه عبدك وابن عبدك خرج من الدّنيا وسعتها ومحبوبها وأحبّائه فيها إلى ظلمة القبر وما هو لاقيه.",
+                "اللَّهُمَّ إنّه كان يشهد أنّك لا إله إلّا أنت وأنّ محمّداً عبدك ورسولك وأنت أعلم به.",
+                "اللَّهُمَّ إنّه نَزَل بك وأنت خير منزولٍ به، وأصبح فقيراً إلى رحمتك وأنت غنيٌّ عن عذابه.",
+                "اللَّهُمَّ إنّا نتوسّل بك إليك، ونقسم بك عليك أن ترحمه ولا تعذّبه، وأن تثبّته عند السؤال.",
+                "اللَّهُمَّ انقله من مواطن الدّود وضيق اللحود إلى جنّات الخلود.",
+                "اللَّهُمَّ احمه تحت الأرض، واستره يوم العرض، ولا تخزه يوم يبعثون \"يوم لا ينفع مالٌ ولا بنون إلّا من أتى الله بقلبٍ سليم\".",
+                "اللَّهُمَّ آته برحمتك ورضاك، وقهِ فتنة القبر وعذابه، وآته برحمتك الأمن من عذابك حتّى تبعثه إلى جنّتك يا أرحم الرّاحمين.",
+                "اللَّهُمَّ يمّن كتابه، ويسّر حسابه، وثقّل بالحسنات ميزانه، وثبّت على الصّراط أقدامه، وأسكنه في أعلى الجنّات بجوار حبيبك ومصطفاك (صلّى الله عليه وسلّم).",
+                "اللَّهُمَّ أمّنه من فزع يوم القيامة، ومن هول يوم القيامة، واجعل نفسه آمنة مطمئنّة، ولقّنه حجّته.",
+                "اللَّهُمَّ اجعله في بطن القبر مطمئنّاً وعند قيام الأشهاد آمن، وبجود رضوانك واثق، وإلى أعلى درجاتك سابق.",
+                "اللَّهُمَّ أسكنه فسيح الجنان، واغفر له يا رحمن، وارحمه يا رحيم، وتجاوز عمّا تعلم يا عليم.",
+                "اللَّهُمَّ انظر إليه نظرة رضا، فإنّ من تنظر إليه نظرة رضا لا تعذّبه أبداً.",
+                "اللَّهُمَّ إنّه جاء ببابك، وأناخ بجنابك، فَجد عليه بعفوك وإكرامك وجود إحسانك.",
+                "اللَّهُمَّ إنّ رحمتك وسعت كلّ شيء فارحمه رحمةً تطمئنّ بها نفسه، وتقرّ بها عينه.",
+                "اللَّهُمَّ اعف عنه فإنّك القائل \"ويعفو عن كثير\".",
+                "اللَّهُمَّ احشره مع المتّقين إلى الرّحمن وفداً.",
+                "اللَّهُمَّ احشره مع أصحاب اليمين، واجعل تحيّته سلامٌ لك من أصحاب اليمين.",
+                "اللَّهُمَّ اجعله من الّذين سعدوا في الجنّة خالدين فيها ما دامت السموات والأرض.",
+                "اللَّهُمَّ لا نزكّيه عليك، ولكنّا نحسبه أنّه أمن وعمل صالحاً، فاجعل له جنّتين ذواتي أفنان بحقّ قولك: \"ولمن خاف مقام ربّه جنّتان\".",
+                "اللَّهُمَّ شفع فيه نبيّنا ومصطفاك، واحشره تحت لوائه، واسقه من يده الشّريفة شربةً هنيئةً لا يظمأ بعدها أبداً.",
+                "اللَّهُمَّ اجعله في جنّة الخلد \"الَّتِي وُعِدَ الْمُتَّقُونَ كَانَتْ لَهُمْ جَزَاء وَمَصِيرًا. لَهُمْ فِيهَا مَا يَشَاؤُونَ خَالِدِينَ كَانَ عَلَى رَبِّكَ وَعْدًا مَسْؤُولا\".",
+                "اللَّهُمَّ إنّه صبر على البلاء فلم يجزع، فامنحه درجة الصّابرين الّذين يوفون أجورهم بغير حساب فإنّك القائل \"إنّما يوفي الصّابرون أجرهم بغير حساب\".",
+                "اللَّهُمَّ إنّه كان مصلّ لك، فثبّته على الصّراط يوم تزل الأقدام.",
+                "اللَّهُمَّ إنّه كان صائماً لك، فأدخله الجنّة من باب الريّان.",
+                "اللَّهُمَّ إنّه كان لكتابك تالٍ وسامع، فشفّع فيه القرآن، وارحمه من النّيران، واجعله يا رحمن يرتقي في الجنّة إلى آخر آية قرأها أو سمعها، وآخر حرفٍ تلاه.",
+                "اللَّهُمَّ ارزقه بكلّ حرفٍ في القرآن حلاوة، وبكلّ كلمة كرامة، وبكلّ اّية سعادة، وبكلّ سورة سلامة، وبكل جْزءٍ جزاء.",
+                "اللَّهُمَّ ارحمه فإنّه كان مسلماً، واغفر له فإنّه كان مؤمناً، وأدخله الجنّة فإنّه كان بنبيّك مصدّقاً، وسامحه فإنّه كان لكتابك مرتّلاً.",
+                "اللَّهُمَّ اغفر لحيّنا وميّتنا، وشاهدنا وغائبنا، وصغيرنا وكبيرنا، وذَكرنَا وأنثانا.",
+                "اللَّهُمَّ لا تحرمنا أجره ولا تضللنا بعده.",
+                "اللَّهُمَّ أنزل على أهله الصّبر والسلوان وارضهم بقضائك.",
+                "اللَّهُمَّ إنّه عبدك وابن عبدك وابن أمتك مات وهو يشهد لك بالوحدانيّة ولرسولك بالشّهادة فاغفر له إنّك أنت الغفّار."
+
+        };
+
+        ContentValues contentValues = new ContentValues();
+
+        for (int i = 0; i < duaaAlmait.length; i++) {
+            contentValues.put(DataBaseHelper.Duaa_Almait_Col1, duaaAlmait[i]);
+            db.insert(Duaa_Almait_TABLE, null, contentValues);
+        }
+
+        contentValues.clear();
+    }
+
+    private void insertPreloadedDataDuaaKhatm_Table(SQLiteDatabase db) {
+
+        String duaaKhatmAlquran = "اللَّهُمَّ ارْحَمْنِي بالقُرْءَانِ وَاجْعَلهُ لِي إِمَاماً وَنُوراً وَهُدًى وَرَحْمَةً.\n" +
+                "اللَّهُمَّ ذَكِّرْنِي مِنْهُ مَانَسِيتُ وَعَلِّمْنِي مِنْهُ مَاجَهِلْتُ وَارْزُقْنِي تِلاَوَتَهُ آنَاءَ اللَّيْلِ وَأَطْرَافَ النَّهَارِ وَاجْعَلْهُ لِي حُجَّةً يَارَبَّ العَالَمِينَ.\n" +
+                "اللَّهُمَّ أَصْلِحْ لِي دِينِي الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِي الَّتِي فِيهَا مَعَادِي، وَاجْعَلِ الحَيَاةَ زِيَادَةً لِي فِي كُلِّ خَيْرٍ وَاجْعَلِ المَوْتَ رَاحَةً لِي مِنْ كُلِّ شَرٍّ.\n" +
+                "اللَّهُمَّ اجْعَلْ خَيْرَ عُمْرِي آخِرَهُ وَخَيْرَ عَمَلِي خَوَاتِمَهُ وَخَيْرَ أَيَّامِي يَوْمَ أَلْقَاكَ فِيهِ.\n" +
+                "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِيشَةً هَنِيَّةً وَمِيتَةً سَوِيَّةً وَمَرَدًّا غَيْرَ مُخْزٍ وَلاَ فَاضِحٍ.\n" +
+                "اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ المَسْأَلةِ وَخَيْرَ الدُّعَاءِ وَخَيْرَ النَّجَاحِ وَخَيْرَ العِلْمِ وَخَيْرَ العَمَلِ وَخَيْرَ الثَّوَابِ وَخَيْرَ الحَيَاةِ وَخيْرَ المَمَاتِ وَثَبِّتْنِي وَثَقِّلْ مَوَازِينِي وَحَقِّقْ إِيمَانِي وَارْفَعْ دَرَجَتِي وَتَقَبَّلْ صَلاَتِي وَاغْفِرْ خَطِيئَاتِي وَأَسْأَلُكَ العُلَا مِنَ الجَنَّةِ.\n" +
+                "اللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ وَعَزَائِمِ مَغْفِرَتِكَ وَالسَّلاَمَةَ مِنْ كُلِّ إِثْمٍ وَالغَنِيمَةَ مِنْ كُلِّ بِرٍّ وَالفَوْزَ بِالجَنَّةِ وَالنَّجَاةَ مِنَ النَّارِ.\n" +
+                "اللَّهُمَّ أَحْسِنْ عَاقِبَتَنَا فِي الأُمُورِ كُلِّهَا، وَأجِرْنَا مِنْ خِزْيِ الدُّنْيَا وَعَذَابِ الآخِرَةِ.\n" +
+                "اللَّهُمَّ اقْسِمْ لَنَا مِنْ خَشْيَتِكَ مَاتَحُولُ بِهِ بَيْنَنَا وَبَيْنَ مَعْصِيَتِكَ وَمِنْ طَاعَتِكَ مَاتُبَلِّغُنَا بِهَا جَنَّتَكَ وَمِنَ اليَقِينِ مَاتُهَوِّنُ بِهِ عَلَيْنَا مَصَائِبَ الدُّنْيَا وَمَتِّعْنَا بِأَسْمَاعِنَا وَأَبْصَارِنَا وَقُوَّتِنَا مَاأَحْيَيْتَنَا وَاجْعَلْهُ الوَارِثَ مِنَّا وَاجْعَلْ ثَأْرَنَا عَلَى مَنْ ظَلَمَنَا وَانْصُرْنَا عَلَى مَنْ عَادَانَا وَلاَ تجْعَلْ مُصِيبَتَنَا فِي دِينِنَا وَلاَ تَجْعَلِ الدُّنْيَا أَكْبَرَ هَمِّنَا وَلَا مَبْلَغَ عِلْمِنَا وَلاَ تُسَلِّطْ عَلَيْنَا مَنْ لَا يَرْحَمُنَا.\n" +
+                "اللَّهُمَّ لَا تَدَعْ لَنَا ذَنْبًا إِلَّا غَفَرْتَهُ وَلَا هَمَّا إِلَّا فَرَّجْتَهُ وَلَا دَيْنًا إِلَّا قَضَيْتَهُ وَلَا حَاجَةً مِنْ حَوَائِجِ الدُّنْيَا وَالآخِرَةِ إِلَّا قَضَيْتَهَا يَاأَرْحَمَ الرَّاحِمِينَ.\n" +
+                "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ وَصَلَّى اللهُ عَلَى سَيِّدِنَا وَنَبِيِّنَا مُحَمَّدٍ وَعَلَى آلِهِ وَأَصْحَابِهِ الأَخْيَارِ وَسَلَّمَ تَسْلِيمًا كَثِيراً.\n";
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DataBaseHelper.Duaa_Khhatm_Col1, duaaKhatmAlquran);
+        db.insert(Duaa_Khhatm_TABLE, null, contentValues);
+
+        contentValues.clear();
     }
 
     private void insertPreloadedDataToayat_Estghfar_Table(SQLiteDatabase db) {
-
 
 
         String[] ayatsOfAstgfar = {"ثُمَّ أَفِيضُوا مِنْ حَيْثُ أَفَاضَ النَّاسُ وَاسْتَغْفِرُوا اللَّهَ ۚ إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ \n(سورة البقرة - آية ١٩٩)",
@@ -191,6 +294,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(SETTING_Col3, "on");
         contentValues.put(SETTING_Col4, "on");
         contentValues.put(SETTING_Col5, "10");
+        contentValues.put(SETTING_Col6, "on");
+        contentValues.put(SETTING_Col7, "false");
         db.insert(SETTING_TABLE, null, contentValues);
         contentValues.clear();
     }
@@ -507,6 +612,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + FAVORITE_ZKR_TABLE);
         db.execSQL("drop table if exists " + AYATS_TASBIH_TABLE);
         db.execSQL("drop table if exists " + AYATS_ESGHFAR_TABLE);
+        db.execSQL("drop table if exists " + Duaa_Khhatm_TABLE);
+        db.execSQL("drop table if exists " + Duaa_Almait_TABLE);
+
         db.execSQL("drop table if exists " + SETTING_TABLE);
 
         onCreate(db);
@@ -562,6 +670,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         sql.execSQL("update  FAVORITE_ZKR_TABLE set Total_number = 0");
 
+        sql.execSQL("update  Duaa_Khhatm_TABLE set Total_number = 0");
         Toast.makeText(context, "تم تصفير جميع العدادات", Toast.LENGTH_LONG).show();
 
     }
@@ -582,12 +691,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sql.insert(FAVORITE_ZKR_TABLE, null, contentValues);
         contentValues.clear();
 
-        Toast.makeText(context, "تمت اضافة العنصر الى القائمة المفضلة", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "تمت اضافة هذا الذكر الى القائمة المفضلة", Toast.LENGTH_LONG).show();
     }
 
     public void deleteRecordTo_FavoriteTABLE(String nameOFprayer) {
         SQLiteDatabase sql = getWritableDatabase();
         sql.delete(FAVORITE_ZKR_TABLE, "name = ?", new String[]{nameOFprayer});
-        Toast.makeText(context, "تمت ازالة العنصر من القائمة المفضلة", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "تمت ازالة هذا الذكر من القائمة المفضلة", Toast.LENGTH_LONG).show();
     }
 }
